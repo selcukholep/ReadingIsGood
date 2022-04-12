@@ -2,6 +2,8 @@ package com.holep.readingisgood.auth.filter;
 
 import com.holep.readingisgood.auth.session.SessionHolder;
 import com.holep.readingisgood.auth.model.AuthUser;
+import com.holep.readingisgood.auth.util.AuthenticationResponseParser;
+import com.holep.readingisgood.domian.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -33,14 +35,16 @@ public class AuthorizationFilter extends OncePerRequestFilter {
         String sessionId = exportSessionId(request);
 
         if (sessionId == null) {
-            response.sendError(HttpStatus.UNAUTHORIZED.value(), "Authorization header is invalid.");
+            AuthenticationResponseParser.prepareResponse(response,
+                    HttpStatus.UNAUTHORIZED.value(), ErrorResponse.of("403", "Authorization header is invalid."));
             return;
         }
 
         AuthUser authUser = sessionHolder.get(sessionId);
 
         if (authUser == null) {
-            response.sendError(HttpStatus.UNAUTHORIZED.value(), "Invalid session.");
+            AuthenticationResponseParser.prepareResponse(response,
+                    HttpStatus.UNAUTHORIZED.value(), ErrorResponse.of("403", "Invalid session."));
             return;
         }
 

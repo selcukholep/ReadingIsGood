@@ -24,10 +24,10 @@ public class AdminAuthServiceImpl implements AuthService {
     }
 
     @Override
-    public AuthUser loadUserByUsername(String username) {
+    public AuthUser loadUserByUsername(String username) throws UsernameNotFoundException {
 
         if (!username.equals(DEFAULT_USERNAME)) {
-            throw new UsernameNotFoundException("Admin not founded.");
+            throw new UsernameNotFoundException("Bad credentials.");
         }
 
         return getDefaultAdminUser();

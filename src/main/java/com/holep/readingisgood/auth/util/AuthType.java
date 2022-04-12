@@ -1,6 +1,6 @@
 package com.holep.readingisgood.auth.util;
 
-import com.holep.readingisgood.exception.AuthTypeNotSupportedException;
+import com.holep.readingisgood.auth.exception.AuthTypeNotSupportedException;
 
 import java.util.Arrays;
 

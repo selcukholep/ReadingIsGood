@@ -7,6 +7,7 @@ import com.holep.readingisgood.data.repository.CustomerRepository;
 import com.holep.readingisgood.exception.CustomerNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -43,11 +44,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDTO getByEmail(String email) {
-        return entityMapper.toDTO(
-                repository
-                        .findByEmail(email)
-                        .orElseThrow(CustomerNotFoundException::new)
-        );
+    public Optional<CustomerDTO> getByEmail(String email) {
+        return repository
+                .findByEmail(email).map(entityMapper::toDTO);
     }
 }

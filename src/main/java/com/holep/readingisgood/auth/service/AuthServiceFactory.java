@@ -1,9 +1,9 @@
 package com.holep.readingisgood.auth.service;
 
-import com.holep.readingisgood.auth.service.AuthService;
 import com.holep.readingisgood.auth.util.AuthConstants;
 import com.holep.readingisgood.auth.util.AuthType;
-import com.holep.readingisgood.exception.AuthTypeNotSupportedException;
+import com.holep.readingisgood.auth.exception.AuthTypeNotSupportedException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -31,7 +31,7 @@ public class AuthServiceFactory implements UserDetailsService {
                 .orElseThrow(AuthTypeNotSupportedException::new);
     }
 
-    private AuthType extractAuthTypeFromRequest() {
+    private AuthType extractAuthTypeFromRequest() throws AuthTypeNotSupportedException {
 
         HttpServletRequest request =
                 ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
@@ -42,7 +42,7 @@ public class AuthServiceFactory implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws AuthenticationException {
 
         AuthType authType = extractAuthTypeFromRequest();
 

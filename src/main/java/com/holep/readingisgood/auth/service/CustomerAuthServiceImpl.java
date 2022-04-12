@@ -4,6 +4,7 @@ import com.holep.readingisgood.auth.model.AuthUser;
 import com.holep.readingisgood.auth.util.AuthType;
 import com.holep.readingisgood.data.dto.CustomerDTO;
 import com.holep.readingisgood.service.CustomerService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service("auth-customer-service")
@@ -21,9 +22,10 @@ public class CustomerAuthServiceImpl implements AuthService {
     }
 
     @Override
-    public AuthUser loadUserByUsername(String username) {
+    public AuthUser loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        CustomerDTO customerDTO = customerService.getByEmail(username);
+        CustomerDTO customerDTO = customerService.getByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Bad credentials."));
 
         return generateAuthUser(customerDTO);
     }
