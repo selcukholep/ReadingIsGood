@@ -1,4 +1,4 @@
-package com.holep.readingisgood.auth.model;
+package com.holep.readingisgood.auth.data;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

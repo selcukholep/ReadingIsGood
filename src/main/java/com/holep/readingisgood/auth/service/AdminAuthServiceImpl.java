@@ -1,10 +1,12 @@
 package com.holep.readingisgood.auth.service;
 
-import com.holep.readingisgood.auth.model.AuthUser;
+import com.holep.readingisgood.auth.data.AuthUser;
 import com.holep.readingisgood.auth.util.AuthType;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service("auth-admin-service")
 public class AdminAuthServiceImpl implements AuthService {
@@ -36,6 +38,7 @@ public class AdminAuthServiceImpl implements AuthService {
     private AuthUser getDefaultAdminUser() {
         AuthUser authUser = new AuthUser();
 
+        authUser.setId(UUID.randomUUID());
         authUser.setUsername(DEFAULT_USERNAME);
         authUser.setPassword(passwordEncoder.encode(DEFAULT_PASSWORD));
         authUser.setAuthType(AuthType.ADMIN);

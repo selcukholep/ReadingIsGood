@@ -5,33 +5,32 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 
-import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Null;
 import java.io.Serial;
 import java.io.Serializable;
 
 @Data
 @Builder
-public class CustomerDTO implements Serializable {
+public class BookDTO implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 7712922438311037958L;
+    private static final long serialVersionUID = 6103298524255270700L;
 
     @Null
     private String id;
 
-    @JsonIgnore
-    @Email
-    private String email;
-
-    @JsonIgnore
-    @Null
-    private String password;
-
     @NonNull
     private String name;
+    private String authorName;
 
-    @NonNull
-    private String surname;
+    @Min(0)
+    private int stock;
 
+    @Min(0)
+    private double price;
+
+    @Null
+    @JsonIgnore
+    private Long version;
 }

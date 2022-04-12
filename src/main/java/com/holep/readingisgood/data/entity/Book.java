@@ -3,23 +3,25 @@ package com.holep.readingisgood.data.entity;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
 
+@Document
 @Data
 @Builder
-@Document
-public class Customer {
+public class Book {
 
     @Id
     private UUID id;
 
     private String name;
-    private String surname;
+    private String authorName;
 
-    @Indexed(unique=true)
-    private String email;
-    private String password;
+    private int stock;
+    private double price;
+
+    @Version
+    private Long version;
 }

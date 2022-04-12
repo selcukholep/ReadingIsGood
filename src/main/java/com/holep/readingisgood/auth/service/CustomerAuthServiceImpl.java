@@ -1,11 +1,13 @@
 package com.holep.readingisgood.auth.service;
 
-import com.holep.readingisgood.auth.model.AuthUser;
+import com.holep.readingisgood.auth.data.AuthUser;
 import com.holep.readingisgood.auth.util.AuthType;
 import com.holep.readingisgood.data.dto.CustomerDTO;
 import com.holep.readingisgood.service.CustomerService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service("auth-customer-service")
 public class CustomerAuthServiceImpl implements AuthService {
@@ -33,6 +35,7 @@ public class CustomerAuthServiceImpl implements AuthService {
     private AuthUser generateAuthUser(CustomerDTO customerDTO) {
         AuthUser authUser = new AuthUser();
 
+        authUser.setId(UUID.fromString(customerDTO.getId()));
         authUser.setUsername(customerDTO.getEmail());
         authUser.setPassword(customerDTO.getPassword());
         authUser.setAuthType(AuthType.CUSTOMER);

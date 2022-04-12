@@ -1,6 +1,6 @@
-package com.holep.readingisgood.controller;
+package com.holep.readingisgood.controller.advice;
 
-import com.holep.readingisgood.domian.response.ErrorResponse;
+import com.holep.readingisgood.domian.ErrorResponse;
 import com.holep.readingisgood.exception.BusinessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

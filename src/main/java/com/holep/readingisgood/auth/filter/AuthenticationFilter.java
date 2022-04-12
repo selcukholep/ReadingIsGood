@@ -1,15 +1,12 @@
 package com.holep.readingisgood.auth.filter;
 
-import com.google.gson.Gson;
 import com.holep.readingisgood.auth.session.SessionHolder;
 import com.holep.readingisgood.auth.util.AuthenticationResponseParser;
 import com.holep.readingisgood.auth.util.SessionUtil;
-import com.holep.readingisgood.auth.model.AuthUser;
-import com.holep.readingisgood.domian.response.ErrorResponse;
-import com.holep.readingisgood.domian.response.LoginSucceedResponse;
-import com.holep.readingisgood.exception.BusinessException;
+import com.holep.readingisgood.auth.data.AuthUser;
+import com.holep.readingisgood.domian.ErrorResponse;
+import com.holep.readingisgood.auth.data.LoginSucceedResponse;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;

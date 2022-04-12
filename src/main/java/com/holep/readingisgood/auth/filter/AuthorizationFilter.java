@@ -1,9 +1,9 @@
 package com.holep.readingisgood.auth.filter;
 
 import com.holep.readingisgood.auth.session.SessionHolder;
-import com.holep.readingisgood.auth.model.AuthUser;
+import com.holep.readingisgood.auth.data.AuthUser;
 import com.holep.readingisgood.auth.util.AuthenticationResponseParser;
-import com.holep.readingisgood.domian.response.ErrorResponse;
+import com.holep.readingisgood.domian.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

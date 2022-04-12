@@ -1,4 +1,4 @@
-package com.holep.readingisgood.auth.model;
+package com.holep.readingisgood.auth.data;
 
 import com.holep.readingisgood.auth.util.AuthType;
 import org.springframework.security.core.GrantedAuthority;
@@ -6,12 +6,14 @@ import org.springframework.security.core.GrantedAuthority;
 import java.io.Serial;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 public class AuthUser extends EnabledUserDetails {
 
     @Serial
     private static final long serialVersionUID = 4109178056288531391L;
 
+    private UUID id;
     private String username;
     private String password;
     private AuthType authType;
@@ -41,5 +43,13 @@ public class AuthUser extends EnabledUserDetails {
 
     public void setAuthType(AuthType authType) {
         this.authType = authType;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }

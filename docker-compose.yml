@@ -1,35 +1,57 @@
 version: '3.8'
 
 services:
-  mongodb-data:
-    container_name: mongodb-data
+  mongodb-data-1:
+    container_name: mongodb-data-1
     image: mongo:5.0
     ports:
       - "27017:27017"
     volumes:
-      - ~/DATA:/data
+      - ~/DATA/mongo1:/data/db
+      - ./mongo/rs-init.sh:/scripts/rs-init.sh
+    links:
+      - mongodb-data-2
+      - mongodb-data-3
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs" ]
     networks:
       backend:
         aliases:
-          - "mongodb-data"
+          - "mongodb-data-1"
 
-  redis-session:
-    container_name: redis-session
-    image: redis:6.2-alpine
-    ports:
-      - "6379:6379"
-    command: redis-server --save 60 1 --loglevel warning
+  mongodb-data-2:
+    container_name: mongodb-data-2
+    image: mongo:5
     volumes:
-      - ~/SESSION:/session
+      - ~/DATA/mongo2:/data/db
     networks:
       backend:
         aliases:
-          - "redis-session"
+          - "mongodb-data-2"
+    ports:
+      - "27022:27017"
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs" ]
+
+  mongodb-data-3:
+    container_name: mongodb-data-3
+    image: mongo:5
+    volumes:
+      - ~/DATA/mongo3:/data/db
+    networks:
+      backend:
+        aliases:
+          - "mongodb-data-3"
+    ports:
+      - "27023:27017"
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs" ]
 
   service-reading-is-good:
     depends_on:
-      - mongodb-data
-      - redis-session
+      - mongodb-data-1
+      - mongodb-data-2
+      - mongodb-data-3
     container_name: service-reading-is-good
     build:
       dockerfile: Dockerfile

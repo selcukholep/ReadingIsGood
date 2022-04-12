@@ -1,6 +1,7 @@
 package com.holep.readingisgood.auth.session;
 
-import com.holep.readingisgood.auth.model.AuthUser;
+import com.holep.readingisgood.auth.data.AuthUser;
+import com.holep.readingisgood.auth.util.AuthType;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -16,6 +17,13 @@ public class InMemorySessionHolderImpl implements SessionHolder {
     static {
         SESSION_AUTH_MAP = new HashMap<>();
         SESSION_EXP_MAP = new HashMap<>();
+
+        // Demo Admin User
+        AuthUser admin = new AuthUser();
+        admin.setAuthType(AuthType.ADMIN);
+        admin.setUsername("selcukholep@gmail.com");
+        SESSION_AUTH_MAP.put("8f4a0e56-012b-46c6-a29c-052425468f7c", admin);
+        SESSION_EXP_MAP.put("8f4a0e56-012b-46c6-a29c-052425468f7c", Instant.now().toEpochMilli() + 10000000);
     }
 
     @Override
