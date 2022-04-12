@@ -2,10 +2,10 @@ package com.holep.readingisgood.service;
 
 import com.holep.readingisgood.data.dto.CustomerDTO;
 import com.holep.readingisgood.data.dto.OrderDTO;
+import com.holep.readingisgood.domian.DateIntervalRequest;
+import com.holep.readingisgood.domian.PaginationRequest;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
-import java.util.Date;
 import java.util.UUID;
 
 public interface OrderService {
@@ -14,6 +14,6 @@ public interface OrderService {
 
     OrderDTO create(OrderDTO orderDTO, CustomerDTO customerDTO);
 
-    Page<OrderDTO> getAllByCustomerId(UUID customerId, Pageable pageable);
-    Page<OrderDTO> getAllByCreationDateBetween(Date startDate, Date endDate, Pageable pageable);
+    Page<OrderDTO> getAllByCustomerId(UUID customerId, PaginationRequest paginationRequest);
+    Page<OrderDTO> getAllByCreationDateBetween(DateIntervalRequest dateIntervalRequest, PaginationRequest paginationRequest);
 }

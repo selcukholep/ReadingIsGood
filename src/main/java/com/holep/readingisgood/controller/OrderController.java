@@ -3,6 +3,8 @@ package com.holep.readingisgood.controller;
 import com.holep.readingisgood.auth.data.AuthUser;
 import com.holep.readingisgood.data.dto.CustomerDTO;
 import com.holep.readingisgood.data.dto.OrderDTO;
+import com.holep.readingisgood.domian.DateIntervalRequest;
+import com.holep.readingisgood.domian.PaginationRequest;
 import com.holep.readingisgood.service.CustomerService;
 import com.holep.readingisgood.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -48,10 +50,8 @@ public class OrderController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/search")
     public ResponseEntity<Page<OrderDTO>> filterByCreationDate(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate,
-            @RequestParam(defaultValue = "10") @Min(1) int size,
-            @RequestParam(defaultValue = "0") @Min(1) int page) {
-        return ResponseEntity.ok(orderService.getAllByCreationDateBetween(startDate, endDate, PageRequest.of(page, size)));
+            @Valid DateIntervalRequest dateIntervalRequest,
+            @Valid PaginationRequest paginationRequest) {
+        return ResponseEntity.ok(orderService.getAllByCreationDateBetween(dateIntervalRequest, paginationRequest));
     }
 }

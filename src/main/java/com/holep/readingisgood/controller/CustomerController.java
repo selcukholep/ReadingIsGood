@@ -2,6 +2,7 @@ package com.holep.readingisgood.controller;
 
 import com.holep.readingisgood.data.dto.CustomerDTO;
 import com.holep.readingisgood.data.dto.OrderDTO;
+import com.holep.readingisgood.domian.PaginationRequest;
 import com.holep.readingisgood.service.CustomerService;
 import com.holep.readingisgood.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -40,12 +41,10 @@ public class CustomerController {
     @GetMapping("/{id}/orders")
     public ResponseEntity<Page<OrderDTO>> getAllOrders(
             @PathVariable String id,
-            @RequestParam(defaultValue = "10") @Min(1) int size,
-            @RequestParam(defaultValue = "0") @Min(1) int page) {
+            @Valid PaginationRequest paginationRequest) {
 
         CustomerDTO customerDTO = customerService.getById(UUID.fromString(id));
 
-        return ResponseEntity.ok(orderService.getAllByCustomerId(UUID.fromString(customerDTO.getId()),
-                PageRequest.of(page, size)));
+        return ResponseEntity.ok(orderService.getAllByCustomerId(UUID.fromString(customerDTO.getId()), paginationRequest));
     }
 }
