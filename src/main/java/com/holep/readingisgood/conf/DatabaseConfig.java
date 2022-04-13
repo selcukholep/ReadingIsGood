@@ -1,17 +1,13 @@
 package com.holep.readingisgood.conf;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.MongoDatabaseFactory;
-import org.springframework.data.mongodb.MongoTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableTransactionManagement
+//@EnableTransactionManagement // WARNING: Transaction works only Mongo Cluster.
 public class DatabaseConfig {
 
-    @Bean
-    MongoTransactionManager transactionManager(MongoDatabaseFactory factory) {
-        return new MongoTransactionManager(factory);
-    }
+//    @Bean // WARNING: Transaction works only Mongo Cluster.
+//    MongoTransactionManager transactionManager(MongoDatabaseFactory factory) {
+//        return new MongoTransactionManager(factory);
+//    }
 }
