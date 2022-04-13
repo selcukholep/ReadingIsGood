@@ -2,7 +2,6 @@ package com.holep.readingisgood.service.impl;
 
 import com.holep.readingisgood.data.constant.OrderDetail;
 import com.holep.readingisgood.data.dto.BookDTO;
-import com.holep.readingisgood.exception.NotEnoughStockException;
 import com.holep.readingisgood.exception.StockModifiedException;
 import com.holep.readingisgood.service.BookService;
 import com.holep.readingisgood.service.OrderDetailService;
@@ -16,7 +15,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
     final BookService bookService;
 
-    @Retryable(value = StockModifiedException.class, maxAttemptsExpression = "${app.order.retry.max-attempts:3}")
+    @Retryable(value = StockModifiedException.class, maxAttempts = 3)
     @Override
     public OrderDetail create(OrderDetail orderDetail) {
 
@@ -33,9 +32,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     // Private Methods
 
     private void checkStock(BookDTO bookDTO, OrderDetail orderDetail) {
-        if (!bookService.isStockEnough(bookDTO, orderDetail.getAmount())) {
-            throw new NotEnoughStockException();
-        }
+        bookService.checkStockEnough(bookDTO, orderDetail.getAmount());
     }
 
     private void decrementAndUpdateStock(BookDTO bookDTO, OrderDetail orderDetail) {

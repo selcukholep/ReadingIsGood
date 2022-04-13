@@ -10,5 +10,5 @@ public interface BookService {
     BookDTO create(BookDTO bookDTO);
     BookDTO updateStock(BookDTO bookDTO, int newStock);
 
-    boolean isStockEnough(BookDTO bookDTO, int amount);
+    void checkStockEnough(BookDTO bookDTO, int amount);
 }

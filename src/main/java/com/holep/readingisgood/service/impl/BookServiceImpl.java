@@ -5,6 +5,7 @@ import com.holep.readingisgood.data.entity.Book;
 import com.holep.readingisgood.data.mapper.BookEntityMapper;
 import com.holep.readingisgood.data.repository.BookRepository;
 import com.holep.readingisgood.exception.BookNotFoundException;
+import com.holep.readingisgood.exception.NotEnoughStockException;
 import com.holep.readingisgood.exception.StockModifiedException;
 import com.holep.readingisgood.service.BookService;
 import lombok.RequiredArgsConstructor;
@@ -53,7 +54,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public boolean isStockEnough(BookDTO bookDTO, int amount) {
-        return bookDTO.getStock() >= amount;
+    public void checkStockEnough(BookDTO bookDTO, int amount) {
+        if (bookDTO.getStock() < amount) {
+            throw new NotEnoughStockException();
+        }
     }
 }
