@@ -4,8 +4,6 @@ import com.holep.readingisgood.data.dto.OrderDTO;
 import com.holep.readingisgood.data.entity.Order;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
 @Component("mapper-order")
 public class OrderEntityMapper implements EntityMapper<Order, OrderDTO> {
 

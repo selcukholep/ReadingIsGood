@@ -1,12 +1,11 @@
 package com.holep.readingisgood.auth.service;
 
+import com.holep.readingisgood.auth.exception.AuthTypeNotSupportedException;
 import com.holep.readingisgood.auth.util.AuthConstants;
 import com.holep.readingisgood.auth.util.AuthType;
-import com.holep.readingisgood.auth.exception.AuthTypeNotSupportedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

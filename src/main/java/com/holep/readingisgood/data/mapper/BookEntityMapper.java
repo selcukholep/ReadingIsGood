@@ -4,8 +4,6 @@ import com.holep.readingisgood.data.dto.BookDTO;
 import com.holep.readingisgood.data.entity.Book;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
 @Component("mapper-book")
 public class BookEntityMapper implements EntityMapper<Book, BookDTO> {
 

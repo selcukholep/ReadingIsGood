@@ -4,8 +4,6 @@ import com.holep.readingisgood.data.dto.CustomerDTO;
 import com.holep.readingisgood.data.entity.Customer;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
 @Component("mapper-customer")
 public class CustomerEntityMapper implements EntityMapper<Customer, CustomerDTO> {
 

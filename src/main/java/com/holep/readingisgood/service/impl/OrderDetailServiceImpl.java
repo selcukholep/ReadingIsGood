@@ -2,8 +2,6 @@ package com.holep.readingisgood.service.impl;
 
 import com.holep.readingisgood.data.constant.OrderDetail;
 import com.holep.readingisgood.data.dto.BookDTO;
-import com.holep.readingisgood.data.dto.CustomerDTO;
-import com.holep.readingisgood.data.entity.Order;
 import com.holep.readingisgood.exception.NotEnoughStockException;
 import com.holep.readingisgood.exception.StockModifiedException;
 import com.holep.readingisgood.service.BookService;
@@ -11,8 +9,6 @@ import com.holep.readingisgood.service.OrderDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor

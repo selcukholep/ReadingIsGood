@@ -7,8 +7,6 @@ import com.holep.readingisgood.service.CustomerService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service("auth-customer-service")
 public class CustomerAuthServiceImpl implements AuthService {
 

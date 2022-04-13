@@ -4,10 +4,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.holep.readingisgood.data.constant.OrderDetail;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NonNull;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Null;
 import java.io.Serial;
 import java.io.Serializable;
