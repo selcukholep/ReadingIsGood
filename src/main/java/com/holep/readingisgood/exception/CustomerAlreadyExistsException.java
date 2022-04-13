@@ -18,7 +18,7 @@ public class CustomerAlreadyExistsException extends BusinessException {
     }
 
     @Override
-    public String getDescription() {
+    public String getMessage() {
         return DESCRIPTION;
     }
 

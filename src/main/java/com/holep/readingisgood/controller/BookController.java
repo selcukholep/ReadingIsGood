@@ -29,7 +29,7 @@ public class BookController implements BaseController {
     @PutMapping("/{id}")
     public ResponseEntity<BookDTO> updateStock(
             @PathVariable String id,
-            @RequestParam @Valid @Min(0) int stock) {
+            @RequestParam @Min(0) int stock) {
 
         BookDTO bookDTO = bookService.getById(UUID.fromString(id));
 

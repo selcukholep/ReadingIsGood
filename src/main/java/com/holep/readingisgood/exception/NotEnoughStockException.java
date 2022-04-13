@@ -1,5 +1,7 @@
 package com.holep.readingisgood.exception;
 
+import org.springframework.http.HttpStatus;
+
 import java.io.Serial;
 
 public class NotEnoughStockException extends BusinessException {
@@ -16,7 +18,12 @@ public class NotEnoughStockException extends BusinessException {
     }
 
     @Override
-    public String getDescription() {
+    public String getMessage() {
         return DESCRIPTION;
+    }
+
+    @Override
+    public HttpStatus getStatus() {
+        return HttpStatus.BAD_REQUEST;
     }
 }

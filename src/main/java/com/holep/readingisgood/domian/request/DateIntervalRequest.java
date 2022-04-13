@@ -1,4 +1,4 @@
-package com.holep.readingisgood.domian;
+package com.holep.readingisgood.domian.request;
 
 import lombok.Getter;
 import lombok.NonNull;

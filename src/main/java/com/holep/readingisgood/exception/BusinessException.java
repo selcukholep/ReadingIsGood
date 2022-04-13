@@ -10,7 +10,6 @@ public abstract class BusinessException extends RuntimeException {
     private static final long serialVersionUID = 2233491462684998597L;
 
     public abstract String getCode();
-    public abstract String getDescription();
 
     public HttpStatus getStatus() {
         return HttpStatus.INTERNAL_SERVER_ERROR;

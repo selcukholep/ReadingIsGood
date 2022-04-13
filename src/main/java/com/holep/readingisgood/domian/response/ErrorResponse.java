@@ -1,4 +1,4 @@
-package com.holep.readingisgood.domian;
+package com.holep.readingisgood.domian.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,5 +9,5 @@ import lombok.Setter;
 @AllArgsConstructor(staticName = "of")
 public class ErrorResponse {
     private String code;
-    private String description;
+    private String message;
 }

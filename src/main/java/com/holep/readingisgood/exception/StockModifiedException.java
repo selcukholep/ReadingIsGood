@@ -1,5 +1,7 @@
 package com.holep.readingisgood.exception;
 
+import org.springframework.http.HttpStatus;
+
 import java.io.Serial;
 
 public class StockModifiedException extends BusinessException {
@@ -16,7 +18,12 @@ public class StockModifiedException extends BusinessException {
     }
 
     @Override
-    public String getDescription() {
+    public String getMessage() {
         return DESCRIPTION;
+    }
+
+    @Override
+    public HttpStatus getStatus() {
+        return HttpStatus.CONFLICT;
     }
 }

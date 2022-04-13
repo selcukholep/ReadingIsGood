@@ -2,8 +2,8 @@ package com.holep.readingisgood.service;
 
 import com.holep.readingisgood.data.dto.CustomerDTO;
 import com.holep.readingisgood.data.dto.OrderDTO;
-import com.holep.readingisgood.domian.DateIntervalRequest;
-import com.holep.readingisgood.domian.PaginationRequest;
+import com.holep.readingisgood.domian.request.DateIntervalRequest;
+import com.holep.readingisgood.domian.request.PaginationRequest;
 import org.springframework.data.domain.Page;
 
 import java.util.UUID;
