@@ -1,0 +1,976 @@
+{
+	"info": {
+		"_postman_id": "ffb944cc-7277-441b-9c2e-4db6553e3efd",
+		"name": "ReadingIsGood - API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "book",
+			"item": [
+				{
+					"name": "persistBook",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "8f4a0e56-012b-46c6-a29c-052425468f7c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Book A",
+									"description": "String | Required",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "49",
+									"description": "Integer | Required | Min(0)",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "140.99",
+									"description": "Double | Required | Min(0)",
+									"type": "text"
+								},
+								{
+									"key": "authorName",
+									"value": "Author A",
+									"description": "String",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/book",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"book"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"laboris dolore ex\",\n  \"authorName\": \"cupidatat labore Ut amet\",\n  \"stock\": 63443861,\n  \"price\": 44581393.99790386\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/book",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"book"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "updateStock",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "<Bearer Token>",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "stock",
+									"value": "5",
+									"description": "Integer | Min(0)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/book/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"book",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "bf55c230-8ade-998b-6718-4d95fc9deaaf",
+									"description": "UUID | Required"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/book/:id?stock=27724180",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"book",
+										":id"
+									],
+									"query": [
+										{
+											"key": "stock",
+											"value": "27724180"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "dolore eu",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "persistOrder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "CUSTOMER_AUTH_TOKEN",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"details\": [\n        {\n            \"bookId\": \"bf55c230-8ade-998b-6718-4d95fc9deaaf\",\n            \"amount\": 83911990,\n            \"price\": 46476226.40196687\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/order",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"details\": [\n    {\n      \"bookId\": \"urn:uuid:b5a769bf-841a-cc06-aeb4-4b66f1689c74\",\n      \"amount\": 19541438,\n      \"price\": 19602098.038378775\n    },\n    {\n      \"bookId\": \"urn:uuid:8945b58f-95be-3405-f02d-0c470dca8bc7\",\n      \"amount\": 68595030,\n      \"price\": 99951429.5221059\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/order",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "getOrderById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "8f4a0e56-012b-46c6-a29c-052425468f7c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/order/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "bf55c230-8ade-998b-6718-4d95fc9deaaf",
+									"description": "UUID | Required"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/order/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"order",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "dolore eu",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "filterByCreationDate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "8f4a0e56-012b-46c6-a29c-052425468f7c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/order/search?startDate=1987-03-02&endDate=2007-07-24",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"order",
+								"search"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "1987-03-02",
+									"description": "Date | Required"
+								},
+								{
+									"key": "endDate",
+									"value": "2007-07-24",
+									"description": "Date | Required"
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Integer | Default(0)",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "10",
+									"description": "Integer | Default(10) | Min(1) | Max(20)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/order/search?startDate=<dateTime>&endDate=<dateTime>&page=<integer>&size=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"order",
+										"search"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "<dateTime>"
+										},
+										{
+											"key": "endDate",
+											"value": "<dateTime>"
+										},
+										{
+											"key": "page",
+											"value": "<integer>"
+										},
+										{
+											"key": "size",
+											"value": "<integer>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "customer",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "getCustomerById",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "8f4a0e56-012b-46c6-a29c-052425468f7c",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/customer/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"customer",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "bf55c230-8ade-998b-6718-4d95fc9deaaf",
+											"description": "UUID | Required"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/customer/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"customer",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "dolore eu",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "getAllOrdersOfCustomer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "8f4a0e56-012b-46c6-a29c-052425468f7c",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/customer/:id/orders",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"customer",
+										":id",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "Integer | Default(0)",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "10",
+											"description": "Date | Required",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "bf55c230-8ade-998b-6718-4d95fc9deaaf",
+											"description": "UUID | Required"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/customer/:id/orders?page=<integer>&size=<integer>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"customer",
+												":id",
+												"orders"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "<integer>"
+												},
+												{
+													"key": "size",
+													"value": "<integer>"
+												}
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "dolore eu",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "persistCustomer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "8f4a0e56-012b-46c6-a29c-052425468f7c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "User",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "Demo",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/customer",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"veniam ullamco\",\n  \"name\": \"laboris commodo\",\n  \"surname\": \"cillum elit sint esse\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/customer",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"customer"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "statistics",
+			"item": [
+				{
+					"name": "order",
+					"item": [
+						{
+							"name": "getOrdersMonthlyReport",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "8f4a0e56-012b-46c6-a29c-052425468f7c",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/statistics/order/monthly-report",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"statistics",
+										"order",
+										"monthly-report"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/statistics/order/monthly-report",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"statistics",
+												"order",
+												"monthly-report"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "*/*"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/auth/login?type=ADMIN&username=admin&password=admin",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "ADMIN",
+							"description": "Enum | Required | AllowedValues(ADMIN, CUSTOMER) | CaseSensitive"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"description": "String | Required | For customer set email for username."
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"description": "String | Required"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/auth/login?type=ADMIN&username=dolore eu&password=dolore eu",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "ADMIN"
+								},
+								{
+									"key": "username",
+									"value": "dolore eu"
+								},
+								{
+									"key": "password",
+									"value": "dolore eu"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "*/*"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
