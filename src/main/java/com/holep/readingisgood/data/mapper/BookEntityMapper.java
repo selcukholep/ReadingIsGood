@@ -12,7 +12,7 @@ public class BookEntityMapper implements EntityMapper<Book, BookDTO> {
     @Override
     public BookDTO toDTO(Book book) {
         return BookDTO.builder()
-                .id(book.getId().toString())
+                .id(book.getId())
                 .name(book.getName())
                 .authorName(book.getAuthorName())
                 .stock(book.getStock())
@@ -24,7 +24,7 @@ public class BookEntityMapper implements EntityMapper<Book, BookDTO> {
     @Override
     public Book toEntity(BookDTO bookDTO) {
         return Book.builder()
-                .id(bookDTO.getId() == null ? null : UUID.fromString(bookDTO.getId()))
+                .id(bookDTO.getId())
                 .name(bookDTO.getName())
                 .authorName(bookDTO.getAuthorName())
                 .stock(bookDTO.getStock())

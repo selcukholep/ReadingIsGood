@@ -12,7 +12,7 @@ public class CustomerEntityMapper implements EntityMapper<Customer, CustomerDTO>
     @Override
     public CustomerDTO toDTO(Customer customer) {
         return CustomerDTO.builder()
-                .id(customer.getId().toString())
+                .id(customer.getId())
                 .name(customer.getName())
                 .surname(customer.getSurname())
                 .email(customer.getEmail())

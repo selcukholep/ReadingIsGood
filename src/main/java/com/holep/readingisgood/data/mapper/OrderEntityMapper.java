@@ -12,21 +12,18 @@ public class OrderEntityMapper implements EntityMapper<Order, OrderDTO> {
     @Override
     public OrderDTO toDTO(Order order) {
         return OrderDTO.builder()
-                .id(order.getId().toString())
-                .amount(order.getAmount())
+                .id(order.getId())
                 .status(order.getStatus())
-                .bookId(order.getBookId().toString())
-                .customerId(order.getCustomerId().toString())
+                .customerId(order.getCustomerId())
                 .creationDate(order.getCreationDate())
-                .price(order.getPrice())
+                .details(order.getDetails())
                 .build();
     }
 
     @Override
     public Order toEntity(OrderDTO orderDTO) {
         return Order.builder()
-                .amount(orderDTO.getAmount())
-                .bookId(UUID.fromString(orderDTO.getBookId()))
+                .details(orderDTO.getDetails())
                 .build();
     }
 }

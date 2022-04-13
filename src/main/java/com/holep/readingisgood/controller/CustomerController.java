@@ -7,14 +7,12 @@ import com.holep.readingisgood.service.CustomerService;
 import com.holep.readingisgood.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import java.util.UUID;
 
 @RestController
@@ -45,6 +43,6 @@ public class CustomerController {
 
         CustomerDTO customerDTO = customerService.getById(UUID.fromString(id));
 
-        return ResponseEntity.ok(orderService.getAllByCustomerId(UUID.fromString(customerDTO.getId()), paginationRequest));
+        return ResponseEntity.ok(orderService.getAllByCustomerId(customerDTO.getId(), paginationRequest));
     }
 }

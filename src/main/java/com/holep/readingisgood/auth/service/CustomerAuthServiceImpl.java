@@ -35,7 +35,7 @@ public class CustomerAuthServiceImpl implements AuthService {
     private AuthUser generateAuthUser(CustomerDTO customerDTO) {
         AuthUser authUser = new AuthUser();
 
-        authUser.setId(UUID.fromString(customerDTO.getId()));
+        authUser.setId(customerDTO.getId());
         authUser.setUsername(customerDTO.getEmail());
         authUser.setPassword(customerDTO.getPassword());
         authUser.setAuthType(AuthType.CUSTOMER);

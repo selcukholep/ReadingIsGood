@@ -1,4 +1,4 @@
-package com.holep.readingisgood.service;
+package com.holep.readingisgood.service.impl;
 
 import com.holep.readingisgood.auth.util.PasswordGenerator;
 import com.holep.readingisgood.data.dto.CustomerDTO;
@@ -7,6 +7,7 @@ import com.holep.readingisgood.data.mapper.CustomerEntityMapper;
 import com.holep.readingisgood.data.repository.CustomerRepository;
 import com.holep.readingisgood.exception.CustomerAlreadyExistsException;
 import com.holep.readingisgood.exception.CustomerNotFoundException;
+import com.holep.readingisgood.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

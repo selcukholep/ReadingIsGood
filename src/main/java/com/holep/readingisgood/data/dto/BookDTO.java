@@ -1,6 +1,7 @@
 package com.holep.readingisgood.data.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Null;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -18,7 +20,8 @@ public class BookDTO implements Serializable {
     private static final long serialVersionUID = 6103298524255270700L;
 
     @Null
-    private String id;
+    @JsonDeserialize
+    private UUID id;
 
     @NonNull
     private String name;

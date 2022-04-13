@@ -1,14 +1,19 @@
 package com.holep.readingisgood.data.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.holep.readingisgood.data.constant.OrderDetail;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Null;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -18,23 +23,19 @@ public class OrderDTO implements Serializable {
     private static final long serialVersionUID = -5955276279069084415L;
 
     @Null
-    private String id;
-
-    @NonNull
-    private String bookId;
+    @JsonDeserialize
+    private UUID id;
 
     @Null
-    private String customerId;
-
-    @Min(1)
-    private int amount;
-
-    @Null
-    private double price;
+    @JsonDeserialize
+    private UUID customerId;
 
     @Null
     private String status;
 
     @Null
     private Date creationDate;
+
+    @Valid
+    private Set<OrderDetail> details;
 }

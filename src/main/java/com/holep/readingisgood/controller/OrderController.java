@@ -9,16 +9,13 @@ import com.holep.readingisgood.service.CustomerService;
 import com.holep.readingisgood.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
-import java.util.Date;
 import java.util.UUID;
 
 @RestController
@@ -30,14 +27,14 @@ public class OrderController {
     final CustomerService customerService;
 
     @PreAuthorize("hasRole('CUSTOMER')")
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     public ResponseEntity<OrderDTO> create(
-            @Valid OrderDTO orderDTO,
+            @RequestBody @Valid OrderDTO orderDTO,
             @AuthenticationPrincipal AuthUser authUser) {
 
         CustomerDTO customerDTO = customerService.getById(authUser.getId());
 
-        return ResponseEntity.ok(orderService.create(orderDTO, customerDTO));
+        return new ResponseEntity<>(orderService.create(orderDTO, customerDTO), HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasRole('ADMIN')")

@@ -12,8 +12,8 @@ public interface OrderService {
 
     OrderDTO getById(UUID id);
 
-    OrderDTO create(OrderDTO orderDTO, CustomerDTO customerDTO);
-
     Page<OrderDTO> getAllByCustomerId(UUID customerId, PaginationRequest paginationRequest);
     Page<OrderDTO> getAllByCreationDateBetween(DateIntervalRequest dateIntervalRequest, PaginationRequest paginationRequest);
+
+    OrderDTO create(OrderDTO orderDTO, CustomerDTO customerDTO);
 }

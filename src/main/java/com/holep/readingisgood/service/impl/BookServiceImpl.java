@@ -1,4 +1,4 @@
-package com.holep.readingisgood.service;
+package com.holep.readingisgood.service.impl;
 
 import com.holep.readingisgood.data.dto.BookDTO;
 import com.holep.readingisgood.data.entity.Book;
@@ -6,6 +6,7 @@ import com.holep.readingisgood.data.mapper.BookEntityMapper;
 import com.holep.readingisgood.data.repository.BookRepository;
 import com.holep.readingisgood.exception.BookNotFoundException;
 import com.holep.readingisgood.exception.StockModifiedException;
+import com.holep.readingisgood.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
