@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/statistics")
 @RequiredArgsConstructor
-public class StatisticsController {
+public class StatisticsController implements BaseController {
 
     final OrderStatisticsService orderStatisticsService;
 

@@ -19,7 +19,7 @@ import java.util.UUID;
 @RequestMapping("/customer")
 @PreAuthorize("hasRole('ADMIN')")
 @RequiredArgsConstructor
-public class CustomerController {
+public class CustomerController implements BaseController {
 
     final CustomerService customerService;
     final OrderService orderService;

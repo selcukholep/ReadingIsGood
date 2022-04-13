@@ -1,14 +1,18 @@
 package com.holep.readingisgood.auth.conf;
 
+import com.holep.readingisgood.auth.conf.properties.SessionProperties;
 import com.holep.readingisgood.auth.filter.AuthenticationFilter;
 import com.holep.readingisgood.auth.filter.AuthorizationFilter;
 import com.holep.readingisgood.auth.service.AuthServiceFactory;
 import com.holep.readingisgood.auth.session.SessionHolder;
 import com.holep.readingisgood.auth.util.SessionUtil;
+import lombok.RequiredArgsConstructor;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -18,6 +22,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
+@RequiredArgsConstructor
+@EnableConfigurationProperties(SessionProperties.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     final SessionUtil sessionUtil;
@@ -25,21 +31,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     final AuthServiceFactory authServiceFactory;
     final AuthorizationFilter authorizationFilter;
     final PasswordEncoder passwordEncoder;
-
-    public SecurityConfig(SessionUtil sessionUtil,
-                          SessionHolder sessionHolder, AuthServiceFactory authServiceFactory,
-                          AuthorizationFilter authorizationFilter, PasswordEncoder passwordEncoder) {
-        this.sessionUtil = sessionUtil;
-        this.sessionHolder = sessionHolder;
-        this.authServiceFactory = authServiceFactory;
-        this.authorizationFilter = authorizationFilter;
-        this.passwordEncoder = passwordEncoder;
-    }
+    final SessionProperties sessionProperties;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers("/auth/login/**").permitAll()
+        http.cors().and().csrf().disable()
+                .authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new AuthenticationFilter(authenticationManager(), sessionUtil, sessionHolder))
@@ -53,5 +50,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(authServiceFactory)
                 .passwordEncoder(passwordEncoder);
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(sessionProperties.getExcludedPaths().toArray(String[]::new));
     }
 }

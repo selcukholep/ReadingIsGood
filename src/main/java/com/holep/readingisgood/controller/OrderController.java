@@ -21,7 +21,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/order")
 @RequiredArgsConstructor
-public class OrderController {
+public class OrderController implements BaseController {
 
     final OrderService orderService;
     final CustomerService customerService;

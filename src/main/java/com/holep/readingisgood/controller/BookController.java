@@ -16,7 +16,7 @@ import java.util.UUID;
 @RequestMapping("/book")
 @PreAuthorize("hasRole('ADMIN')")
 @RequiredArgsConstructor
-public class BookController {
+public class BookController implements BaseController {
 
     final BookService bookService;
 

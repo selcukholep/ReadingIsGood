@@ -1,6 +1,7 @@
 package com.holep.readingisgood.data.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class BookDTO implements Serializable {
 
     @Null
     @JsonDeserialize
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private UUID id;
 
     @NonNull

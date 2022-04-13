@@ -1,14 +1,17 @@
 package com.holep.readingisgood.auth.filter;
 
+import com.holep.readingisgood.auth.conf.properties.SessionProperties;
 import com.holep.readingisgood.auth.data.AuthUser;
 import com.holep.readingisgood.auth.session.SessionHolder;
 import com.holep.readingisgood.auth.util.AuthenticationResponseParser;
 import com.holep.readingisgood.domian.ErrorResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -19,13 +22,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
+@RequiredArgsConstructor
 public class AuthorizationFilter extends OncePerRequestFilter {
 
     final SessionHolder sessionHolder;
-
-    public AuthorizationFilter(SessionHolder sessionHolder) {
-        this.sessionHolder = sessionHolder;
-    }
+    final SessionProperties sessionProperties;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -51,6 +52,13 @@ public class AuthorizationFilter extends OncePerRequestFilter {
         setAuthentication(authUser);
 
         filterChain.doFilter(request, response);
+    }
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        AntPathMatcher pathMatcher = new AntPathMatcher();
+        return sessionProperties.getExcludedPaths().stream()
+                .anyMatch(p -> pathMatcher.match(p, request.getServletPath()));
     }
 
     private void setAuthentication(AuthUser authUser) {

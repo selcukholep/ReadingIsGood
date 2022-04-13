@@ -1,5 +1,6 @@
 package com.holep.readingisgood.data.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.holep.readingisgood.data.constant.OrderDetail;
 import lombok.Builder;
@@ -22,16 +23,20 @@ public class OrderDTO implements Serializable {
 
     @Null
     @JsonDeserialize
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private UUID id;
 
     @Null
     @JsonDeserialize
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private UUID customerId;
 
     @Null
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String status;
 
     @Null
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Date creationDate;
 
     @Valid
