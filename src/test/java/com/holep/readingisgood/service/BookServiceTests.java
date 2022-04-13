@@ -2,6 +2,7 @@ package com.holep.readingisgood.service;
 
 import com.holep.readingisgood.data.dto.BookDTO;
 import com.holep.readingisgood.data.entity.Book;
+import com.holep.readingisgood.data.mapper.BookEntityMapper;
 import com.holep.readingisgood.data.repository.BookRepository;
 import com.holep.readingisgood.exception.BookNotFoundException;
 import com.holep.readingisgood.exception.NotEnoughStockException;
@@ -10,10 +11,10 @@ import com.holep.readingisgood.service.impl.BookServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.dao.OptimisticLockingFailureException;
 
 import java.util.Optional;
@@ -24,15 +25,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
 @ExtendWith(MockitoExtension.class)
 public class BookServiceTests {
 
-    @Autowired
+    @InjectMocks
     BookServiceImpl bookService;
 
-    @MockBean
+    @Mock
     BookRepository bookRepository;
+
+    @Spy
+    BookEntityMapper bookEntityMapper;
 
     private static BookDTO bookDTO;
     private static Book book;

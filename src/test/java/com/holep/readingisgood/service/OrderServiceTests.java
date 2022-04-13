@@ -6,10 +6,9 @@ import com.holep.readingisgood.service.impl.OrderDetailServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.UUID;
 
@@ -17,13 +16,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest
 public class OrderServiceTests {
 
-    @Autowired
+    @InjectMocks
     OrderDetailServiceImpl orderDetailService;
 
-    @MockBean
+    @Mock
     BookService bookService;
 
     private static OrderDetail orderDetail;

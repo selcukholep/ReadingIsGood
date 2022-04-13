@@ -1,7 +1,9 @@
 package com.holep.readingisgood.service;
 
+import com.holep.readingisgood.auth.util.PasswordGenerator;
 import com.holep.readingisgood.data.dto.CustomerDTO;
 import com.holep.readingisgood.data.entity.Customer;
+import com.holep.readingisgood.data.mapper.CustomerEntityMapper;
 import com.holep.readingisgood.data.repository.CustomerRepository;
 import com.holep.readingisgood.exception.CustomerAlreadyExistsException;
 import com.holep.readingisgood.exception.CustomerNotFoundException;
@@ -9,10 +11,11 @@ import com.holep.readingisgood.service.impl.CustomerServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -22,15 +25,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.when;
 
-@SpringBootTest
 @ExtendWith(MockitoExtension.class)
 public class CustomerServiceTests {
 
-    @Autowired
+    @InjectMocks
     CustomerServiceImpl customerService;
 
-    @MockBean
+    @Mock
     CustomerRepository customerRepository;
+
+    @Spy
+    CustomerEntityMapper customerEntityMapper;
+
+    @Spy
+    PasswordGenerator passwordGenerator = new PasswordGenerator(new BCryptPasswordEncoder());
 
     private static CustomerDTO customerDTO;
     private static Customer customer;
