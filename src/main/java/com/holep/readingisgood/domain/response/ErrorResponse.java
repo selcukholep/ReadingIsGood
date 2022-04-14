@@ -1,4 +1,4 @@
-package com.holep.readingisgood.domian.response;
+package com.holep.readingisgood.domain.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

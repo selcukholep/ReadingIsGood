@@ -2,7 +2,7 @@ package com.holep.readingisgood.controller;
 
 import com.holep.readingisgood.data.dto.CustomerDTO;
 import com.holep.readingisgood.data.dto.OrderDTO;
-import com.holep.readingisgood.domian.request.PaginationRequest;
+import com.holep.readingisgood.domain.request.PaginationRequest;
 import com.holep.readingisgood.service.CustomerService;
 import com.holep.readingisgood.service.OrderService;
 import lombok.RequiredArgsConstructor;

@@ -5,7 +5,7 @@ import com.holep.readingisgood.auth.data.LoginSucceedResponse;
 import com.holep.readingisgood.auth.session.SessionHolder;
 import com.holep.readingisgood.auth.util.AuthenticationResponseParser;
 import com.holep.readingisgood.auth.util.SessionUtil;
-import com.holep.readingisgood.domian.response.ErrorResponse;
+import com.holep.readingisgood.domain.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;

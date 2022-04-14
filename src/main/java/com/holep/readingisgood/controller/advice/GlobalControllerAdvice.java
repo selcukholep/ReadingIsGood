@@ -1,6 +1,6 @@
 package com.holep.readingisgood.controller.advice;
 
-import com.holep.readingisgood.domian.response.ErrorResponse;
+import com.holep.readingisgood.domain.response.ErrorResponse;
 import com.holep.readingisgood.exception.BusinessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

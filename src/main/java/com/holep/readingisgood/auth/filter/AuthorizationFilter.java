@@ -4,7 +4,7 @@ import com.holep.readingisgood.auth.conf.properties.SessionProperties;
 import com.holep.readingisgood.auth.data.AuthUser;
 import com.holep.readingisgood.auth.session.SessionHolder;
 import com.holep.readingisgood.auth.util.AuthenticationResponseParser;
-import com.holep.readingisgood.domian.response.ErrorResponse;
+import com.holep.readingisgood.domain.response.ErrorResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
