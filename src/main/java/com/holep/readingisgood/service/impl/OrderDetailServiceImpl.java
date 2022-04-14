@@ -15,7 +15,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
     final BookService bookService;
 
-    @Retryable(value = StockModifiedException.class, maxAttempts = 3)
+    @Retryable(value = StockModifiedException.class, maxAttemptsExpression = "${app.order.retry.max-attempts:3}")
     @Override
     public OrderDetail create(OrderDetail orderDetail) {
 
