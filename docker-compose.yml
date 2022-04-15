@@ -13,4 +13,4 @@ services:
 networks:
   default:
     external:
-      name: custom
+      name: reading-is-good-network
