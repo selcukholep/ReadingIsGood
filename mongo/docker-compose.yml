@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  mongodb-data-1:
+    container_name: mongodb-data-1
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - ~/DATA/mongo1:/data/db
+      - ./rs-init.sh:/scripts/rs-init.sh
+    links:
+      - mongodb-data-2
+      - mongodb-data-3
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs" ]
+
+  mongodb-data-2:
+    container_name: mongodb-data-2
+    image: mongo:5
+    volumes:
+      - ~/DATA/mongo2:/data/db
+
+    ports:
+      - "27022:27017"
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs" ]
+
+  mongodb-data-3:
+    container_name: mongodb-data-3
+    image: mongo:5
+    volumes:
+      - ~/DATA/mongo3:/data/db
+
+    ports:
+      - "27023:27017"
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs" ]
+
+networks:
+  default:
+    external:
+      name: custom

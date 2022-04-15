@@ -1,67 +1,16 @@
 version: '3.8'
 
 services:
-  mongodb-data-1:
-    container_name: mongodb-data-1
-    image: mongo:5.0
-    ports:
-      - "27017:27017"
-    volumes:
-      - ~/DATA/mongo1:/data/db
-      - ./mongo/rs-init.sh:/scripts/rs-init.sh
-    links:
-      - mongodb-data-2
-      - mongodb-data-3
-    restart: always
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs" ]
-    networks:
-      backend:
-        aliases:
-          - "mongodb-data-1"
 
-  mongodb-data-2:
-    container_name: mongodb-data-2
-    image: mongo:5
-    volumes:
-      - ~/DATA/mongo2:/data/db
-    networks:
-      backend:
-        aliases:
-          - "mongodb-data-2"
-    ports:
-      - "27022:27017"
-    restart: always
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs" ]
-
-  mongodb-data-3:
-    container_name: mongodb-data-3
-    image: mongo:5
-    volumes:
-      - ~/DATA/mongo3:/data/db
-    networks:
-      backend:
-        aliases:
-          - "mongodb-data-3"
-    ports:
-      - "27023:27017"
-    restart: always
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs" ]
-
-  service-reading-is-good:
-    depends_on:
-      - mongodb-data-1
-      - mongodb-data-2
-      - mongodb-data-3
-    container_name: service-reading-is-good
+  service-backend:
+    container_name: service-backend
     build:
       dockerfile: Dockerfile
       context: .
     ports:
-      - "8081:8081"
-    networks:
-      backend:
-        aliases:
-          - "service-reading-is-good"
+      - "8080:8080"
+
 networks:
-  backend:
-    driver: bridge
+  default:
+    external:
+      name: custom
